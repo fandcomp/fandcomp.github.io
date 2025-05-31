@@ -1,317 +1,125 @@
+<!DOCTYPE html>
 <html lang="en">
- <head>
-  <meta charset="utf-8"/>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-  <title>
-   Web Page
-  </title>
-  <script src="https://cdn.tailwindcss.com">
-  </script>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
- </head>
- <body class="bg-black text-white">
-  <div class="flex min-h-screen">
-   <!-- Sidebar -->
-   <div class="w-1/5 bg-black p-4 flex flex-col justify-between">
-    <div>
-     <img src="logo.png" alt="Logo" class="h-12 w-12 rounded-full">
-     <nav class="space-y-4">
-      <a class="flex items-center space-x-2 text-white" href="#">
-       <i class="fas fa-home">
-       </i>
-       <span>
-        Home
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-search">
-       </i>
-       <span>
-        Explore
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-bell">
-       </i>
-       <span>
-        Notifications
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-envelope">
-       </i>
-       <span>
-        Messages
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-chart-line">
-       </i>
-       <span>
-        Grok
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-users">
-       </i>
-       <span>
-        Communities
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-gem">
-       </i>
-       <span>
-        Premium
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-user">
-       </i>
-       <span>
-        Profile
-       </span>
-      </a>
-      <a class="flex items-center space-x-2 text-gray-400" href="#">
-       <i class="fas fa-ellipsis-h">
-       </i>
-       <span>
-        More
-       </span>
-      </a>
-     </nav>
-     <button class="mt-4 w-full bg-gray-700 text-white py-2 rounded-full">
-      Post
-     </button>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <meta name="description" content="A special message for someone I love">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        love: "#ff6b81",
+                        heart: "#ff4757",
+                        light: "#fff5f5"
+                    },
+                    fontFamily: {
+                        romantic: ["'Dancing Script', cursive"],
+                        sans: ["'Poppins', sans-serif"]
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body class="min-h-screen bg-light font-sans">
+    <div class="container mx-auto px-4 py-8 max-w-3xl">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-romantic text-heart mb-4">Hi Alma..</h1>
+            <div class="flex justify-center space-x-2">
+                <i class="fas fa-heart text-heart text-xl"></i>
+                <i class="fas fa-heart text-heart text-xl"></i>
+                <i class="fas fa-heart text-heart text-xl"></i>
+            </div>
+        </header>
+
+        <main class="space-y-8">
+            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 transform hover:scale-[1.01] transition duration-300">
+                <div class="flex items-start mb-4">
+                    <i class="fas fa-quote-left text-love text-2xl mr-3 mt-1"></i>
+                    <p class="text-gray-700 text-lg leading-relaxed">
+                        KAMU PARAH SII, tapi ya mau gimana lagi yakann.. GPP KOK, hehe capslok dikit lah ya, kan kita bukan yg jangka waktu singkat, jadi masih banyak kesempatan untuk meet selanjutnya.
+                        Kok bisa si kamu keren gitu, aku aja IB selain ituuu juga biar kabur dikit dari agenda malas dikampus, masak sore ini disuruh wajib olahraga, kan libur ya, tanggal merah, ANEHH
+                        Jadii, karna gabut kubuatin 2 pantun.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-love mb-3">#1</h3>
+                    <p class="text-gray-600">
+                        Secangkir kopi dingin ditangan udah ada,
+                        Harum semerbak menggoda rasa.
+                        Semangat gladinya ya alma,
+                        Besok aman lancar kok acaranya! ☕
+
+                    </p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
+                    <h3 class="text-xl font-semibold text-love mb-3">#2</h3>
+                    <p class="text-gray-600">
+                        Jauh di mata dekat di hati,
+                        Rindu mengalir seperti sungai.
+                        Semoga segera kita bersua lagi,
+                        Menghapus jarak dengan peluk damai. 💕
+
+                    </p>
+                </div>
+            </div>
+
+            <div class="relative overflow-hidden rounded-xl h-64">
+                <img 
+                    src="https://picsum.photos/800/400?random=1" 
+                    alt="Romantic sunset" 
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                >
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
+                    <p class="text-white text-xl font-romantic">
+                        "Together is my favorite place to be"
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-love text-white rounded-xl p-6 text-center">
+                <h2 class="text-2xl font-bold mb-4">Gatau diisi apa</h2>
+                <p class="mb-4">
+                    jadi lakuin aja apa yang kamu suka,
+                    karena aku suka kalau kamu suka.
+                    <br> 
+                </p>
+                <button class="bg-white text-love px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
+                    <i class="fas fa-heart mr-2"></i> Always Yours
+                </button>
+            </div>
+        </main>
+
+        <footer class="mt-12 text-center text-gray-500">
+            <p>Made with <i class="fas fa-heart text-heart"></i> for someone special</p>
+            <p class="text-sm mt-2">© 2025 - Forever</p>
+        </footer>
     </div>
-    <div class="flex items-center space-x-2">
-     <img alt="User profile picture" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/0cOs67IdrLBMn3Q0nhlSr0M6DW-MRWRly81x1aeH0Wc.jpg" width="40"/>
-     <div>
-      <p>
-       ha_fandi
-      </p>
-      <p class="text-gray-400">
-       @ha_fandi
-      </p>
-     </div>
-     <i class="fas fa-ellipsis-h text-gray-400">
-     </i>
-    </div>
-   </div>
-   <!-- Main Content -->
-   <div class="w-3/5 bg-black p-4">
-    <div class="flex justify-between items-center border-b border-gray-700 pb-2">
-     <div class="flex space-x-4">
-      <a class="text-gray-400" href="#">
-       For you
-      </a>
-      <a class="text-white border-b-2 border-blue-500" href="#">
-       Following
-      </a>
-     </div>
-    </div>
-    <div class="mt-4">
-     <div class="flex items-center space-x-2">
-      <img alt="User profile picture" class="rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/0cOs67IdrLBMn3Q0nhlSr0M6DW-MRWRly81x1aeH0Wc.jpg" width="40"/>
-      <input class="bg-black text-white w-full focus:outline-none" placeholder="What is happening?!" type="text"/>
-     </div>
-     <div class="flex justify-between items-center mt-2">
-      <div class="flex space-x-4 text-blue-500">
-       <i class="fas fa-image">
-       </i>
-       <i class="fas fa-gif">
-       </i>
-       <i class="fas fa-poll">
-       </i>
-       <i class="fas fa-smile">
-       </i>
-       <i class="fas fa-calendar">
-       </i>
-       <i class="fas fa-map-marker-alt">
-       </i>
-      </div>
-      <button class="bg-gray-700 text-white py-1 px-4 rounded-full">
-       Post
-      </button>
-     </div>
-    </div>
-    <div class="mt-8 text-center">
-     <h1 class="text-2xl font-light font-sans mb-4">
-      Yth. alma
-     </h1>     
-     <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-       <div class="flex space-x-4">
-        <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-        <div class="w-full">
-         <div class="flex justify-between">
-          <div>
-          <span class="font-sans font-light text-black">fandi</span>           
-          <span class="text-gray-500">@netizen_baik · 1h</span>
-          </div>
-          <i class="fas fa-ellipsis-h text-gray-500"></i>
-         </div>
-         <p class="mt-2 text-gray-700">1. Menurut gua bagus banget kok berprinsip, kita jadi teguh pendirian, kuat, kokoh, dsb. Tapiii, buat apa si prinsip ke sesuatu yg sebenarnya bukan hal negative. Ga salah si, cuman kapan si kita bisa mencoba sesuatu selain di masa muda ini? Masak coba" pas udh tua, kan jadi MKKB nggak tu. Bahkan ni, klau mau coba hal buruk mungkin, asal bukan yg merusak Harga diri ya. Itu boleh menurut gua. Gimana kita mau tau suatu hal itu baik atau buruk dengan pasti dan trus kita membolehkan atau melarang org dekat kita tentang sesuatu hal tersebut tanpa pengalaman yg sdh kita ketahui. wkw kyknya ngajak buruk deh, jgn di resapi ma, anggep aja angin lembut yg lewat gitu aja</p>
-         <div class="flex justify-between mt-4 text-gray-500">
-          <i class="far fa-comment"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="far fa-heart"></i>
-          <i class="fas fa-share"></i>
-         </div>
-        </div>
-       </div>
-      </div>
 
-      <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-       <div class="flex space-x-4">
-        <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-        <div class="w-full">
-         <div class="flex justify-between">
-          <div>
-           <span class="font-sans font-light text-black">fandi</span>           
-          <span class="text-gray-500">@netizen_baik · 2h</span>
-          </div>
-          <i class="fas fa-ellipsis-h text-gray-500"></i>
-         </div>
-         <p class="mt-2 text-gray-700">2. Pertanyaan ini murni buat gua sendiri ya, nice information terutama buat gua. Sebenernya ada banyak si yg pingin gua tau dari insight seorang adik. Tapi sambil jln aja nanti yak</p>
-         <div class="flex justify-between mt-4 text-gray-500">
-          <i class="far fa-comment"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="far fa-heart"></i>
-          <i class="fas fa-share"></i>
-         </div>
-        </div>
-       </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-       <div class="flex space-x-4">
-        <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-        <div class="w-full">
-         <div class="flex justify-between">
-          <div>
-           <span class="font-sans font-light text-black">fandi</span>           
-          <span class="text-gray-500">@netizen_baik · 3h</span>
-          </div>
-          <i class="fas fa-ellipsis-h text-gray-500"></i>
-         </div>
-         <p class="mt-2 text-gray-700">3. Sebenernya ada si yg lebih pas menurut gua, mencari sosok teladan kadang bikin kita itu berlindung dibalik kekurangan sosok teladan itu. Kecuali sosok itu nabi yaa. Jadi mending gini, teladan terbaik ya diri kita sendiri, karna kita sendiri juga yg tau kyk gimana diri kita itu. Orang lain yg missal Taunya kita keren lah, pinter, dsb. tapi diri kita tau dimana letak kurangnya kita. nah seharusnya karna kita tau kita bisa mengurangi kekurangan atau minimal tidak menunjukkan sembarangan. keren kan diri kita sendiri itu, jadi ya begitulah. sosok itu cukup kita tiru baiknya dan hal yang menurut kita bagus</p>
-         <div class="flex justify-between mt-4 text-gray-500">
-          <i class="far fa-comment"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="far fa-heart"></i>
-          <i class="fas fa-share"></i>
-         </div>
-        </div>
-       </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-       <div class="flex space-x-4">
-        <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-        <div class="w-full">
-         <div class="flex justify-between">
-          <div>
-           <span class="font-sans font-light text-black">fandi</span>           
-          <span class="text-gray-500">@netizen_baik · 4h</span>
-          </div>
-          <i class="fas fa-ellipsis-h text-gray-500"></i>
-         </div>
-         <p class="mt-2 text-gray-700">4. no comment emng gitu si, memastikan aja sebenernya</p>
-         <div class="flex justify-between mt-4 text-gray-500">
-          <i class="far fa-comment"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="far fa-heart"></i>
-          <i class="fas fa-share"></i>
-         </div>
-        </div>
-       </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-       <div class="flex space-x-4">
-        <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-        <div class="w-full">
-         <div class="flex justify-between">
-          <div>
-           <span class="font-sans font-light text-black">fandi</span>           
-          <span class="text-gray-500">@netizen_baik · 5h</span>
-          </div>
-          <i class="fas fa-ellipsis-h text-gray-500"></i>
-         </div>
-         <p class="mt-2 text-gray-700">5. MANA MA?? BUTUH MUSIK BUAT SPEAKER KAMAR bagi link dong</p>
-         <div class="flex justify-between mt-4 text-gray-500">
-          <i class="far fa-comment"></i>
-          <i class="fas fa-retweet"></i>
-          <i class="far fa-heart"></i>
-          <i class="fas fa-share"></i>
-         </div>
-        </div>
-       </div>
-      </div>
-
-      <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-        <div class="flex space-x-4">
-         <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-         <div class="w-full">
-          <div class="flex justify-between">
-           <div>
-            <span class="font-sans font-light text-black">fandi</span>           
-           <span class="text-gray-500">@netizen_baik · 6h</span>
-           </div>
-           <i class="fas fa-ellipsis-h text-gray-500"></i>
-          </div>
-          <p class="mt-2 text-gray-700">AAMIIN ∞</p>
-          <div class="flex justify-between mt-4 text-gray-500">
-           <i class="far fa-comment"></i>
-           <i class="fas fa-retweet"></i>
-           <i class="far fa-heart"></i>
-           <i class="fas fa-share"></i>
-          </div>
-         </div>
-        </div>
-       </div>
-
-       <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-        <div class="flex space-x-4">
-         <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-         <div class="w-full">
-          <div class="flex justify-between">
-           <div>
-            <span class="font-sans font-light text-black">fandi</span>           
-           <span class="text-gray-500">@netizen_baik · 7h</span>
-           </div>
-           <i class="fas fa-ellipsis-h text-gray-500"></i>
-          </div>
-          <p class="mt-2 text-gray-700">Oke noted</p>
-          <div class="flex justify-between mt-4 text-gray-500">
-           <i class="far fa-comment"></i>
-           <i class="fas fa-retweet"></i>
-           <i class="far fa-heart"></i>
-           <i class="fas fa-share"></i>
-          </div>
-         </div>
-        </div>
-       </div>
-
-       <div class="bg-white p-4 rounded-lg shadow-md mb-4">
-        <div class="flex space-x-4">
-         <img alt="User profile picture" class="w-10 h-10 rounded-full" height="40" src="https://storage.googleapis.com/a1aa/image/7iZO07J1EpffWQoMNMI6fBjbIQs-PaSxCDJ-KINWvnQ.jpg" width="40"/>
-         <div class="w-full">
-          <div class="flex justify-between">
-           <div>
-            <span class="font-sans font-light text-black">fandi</span>           
-           <span class="text-gray-500">@netizen_baik · 8h</span>
-           </div>
-           <i class="fas fa-ellipsis-h text-gray-500"></i>
-          </div>
-          <p class="mt-2 text-gray-700">8. fyi, jadi emng awalnya just challange follow ig, cuman lama" karjen ni kok malah promosi mulu. penasaran lah kan gua suka tantangan, eh kok unik si elu ni, yaudah apa salahnya nyoba. kan prinsip gua ada tantangan, coba. quotes dari gua simple, muda berkelana tua bercerita. Sama itu overthink atau hiperbola itu karna nunjukin lewat tulisan, aslinya mah ga gitu. yg jelas gua waspada si gambaran lebih tepatnya. jgn percaya siapapun klau dia itu bukan bagian hidup lu, gitu lah
-            Tapi kok jadi bingung ya gua, harus gimana selanjutnya si abis di tahap kyk skrng? </p>
-          <div class="flex justify-between mt-4 text-gray-500">
-           <i class="far fa-comment"></i>
-           <i class="fas fa-retweet"></i>
-           <i class="far fa-heart"></i>
-           <i class="fas fa-share"></i>
-          </div>
-         </div>
-        </div>
-       </div>
+    <script>
+        // Animation for hearts
+        document.addEventListener('DOMContentLoaded', function() {
+            const hearts = document.querySelectorAll('.fa-heart');
+            
+            hearts.forEach(heart => {
+                heart.addEventListener('mouseover', () => {
+                    heart.classList.add('animate-pulse');
+                });
+                
+                heart.addEventListener('mouseout', () => {
+                    heart.classList.remove('animate-pulse');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
