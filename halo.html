@@ -3,122 +3,649 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Someone Special</title>
-    <meta name="description" content="A special message for someone I love">
+    <title>Romantic Getaway Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        love: "#ff6b81",
-                        heart: "#ff4757",
-                        light: "#fff5f5"
-                    },
-                    fontFamily: {
-                        romantic: ["'Dancing Script', cursive"],
-                        sans: ["'Poppins', sans-serif"]
-                    }
-                }
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff9fb;
+        }
+        
+        .title-font {
+            font-family: 'Playfair Display', serif;
+        }
+        
+        .login-container {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+        }
+        
+        .card {
+            box-shadow: 0 10px 30px rgba(181, 91, 136, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(181, 91, 136, 0.2);
+        }
+        
+        .map-container {
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .destination-spot {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background-color: #e56b6f;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+        
+        .destination-spot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background-color: #e56b6f;
+            animation: pulse 1.5s infinite;
+            opacity: 0.6;
+            z-index: 9;
+            top: 0;
+            left: 0;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.6;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
             }
         }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 2px;
+            background-color: #e56b6f;
+            top: 0;
+            bottom: 0;
+            left: 35px;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border: 2px solid #e56b6f;
+            border-radius: 50%;
+            left: 30px;
+        }
+    </style>
 </head>
-<body class="min-h-screen bg-light font-sans">
-    <div class="container mx-auto px-4 py-8 max-w-3xl">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl md:text-5xl font-romantic text-heart mb-4">Hi Alma..</h1>
-            <div class="flex justify-center space-x-2">
-                <i class="fas fa-heart text-heart text-xl"></i>
-                <i class="fas fa-heart text-heart text-xl"></i>
-                <i class="fas fa-heart text-heart text-xl"></i>
+<body class="min-h-screen bg-gradient-to-b from-pink-50 to-rose-50">
+    <!-- Login Section (Initially visible) -->
+    <div id="loginSection" class="fixed inset-0 flex items-center justify-center z-50 transition-all duration-500">
+        <div class="login-container rounded-xl p-8 w-full max-w-md">
+            <div class="text-center mb-8">
+                <h1 class="title-font text-3xl text-rose-600 mb-2">Special Invitation</h1>
+                <p class="text-rose-400">Please enter your credentials</p>
+            </div>
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="username" class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    <input type="text" id="username" name="username" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300">
+                </div>
+                <div>
+                    <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Password</label>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300">
+                </div>
+                <button type="submit" class="w-full bg-rose-600 text-white py-2 px-4 rounded-lg hover:bg-rose-700 transition duration-200 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:ring-opacity-50">Enter</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Content (Initially hidden) -->
+    <div id="mainContent" class="hidden">
+        <!-- Header -->
+        <header class="bg-white shadow-sm py-4">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <i class="fas fa-heart text-rose-600 text-xl mr-2"></i>
+                    <h1 class="title-font text-xl text-gray-800">Romantic Getaway</h1>
+                </div>
+                <button id="logoutBtn" class="text-rose-600 hover:text-rose-800 transition">
+                    <i class="fas fa-sign-out-alt mr-1"></i> Logout
+                </button>
             </div>
         </header>
 
-        <main class="space-y-8">
-            <div class="bg-white rounded-xl shadow-lg p-6 md:p-8 transform hover:scale-[1.01] transition duration-300">
-                <div class="flex items-start mb-4">
-                    <i class="fas fa-quote-left text-love text-2xl mr-3 mt-1"></i>
-                    <p class="text-gray-700 text-lg leading-relaxed">
-                        KAMU PARAH SII, tapi ya mau gimana lagi yakann.. GPP KOK, hehe capslok dikit lah ya, kan kita bukan yg jangka waktu singkat, jadi masih banyak kesempatan untuk meet selanjutnya.
-                        Kok bisa si kamu keren gitu, aku aja IB selain ituuu juga biar kabur dikit dari agenda malas dikampus, masak sore ini disuruh wajib olahraga, kan libur ya, tanggal merah, ANEHH
-                        Jadii, karna gabut kubuatin 2 pantun.
-                    </p>
+        <!-- Main Container -->
+        <main class="container mx-auto px-4 py-8">
+            <!-- Hero Section -->
+            <section class="bg-gradient-to-r from-rose-50 to-pink-50 rounded-xl p-8 mb-8 text-center">
+                <h2 class="title-font text-3xl text-rose-700 mb-4">Our Romantic Day Together</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto">A carefully planned adventure for us to enjoy memorable moments and create beautiful memories.</p>
+            </section>
+
+            <!-- Navigation Cards -->
+            <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+                <div class="card bg-white rounded-xl p-6 cursor-pointer" id="destinationsBtn">
+                    <div class="flex items-start">
+                        <div class="bg-rose-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-map-marker-alt text-rose-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="title-font text-xl text-gray-800 mb-2">Destinations</h3>
+                            <p class="text-gray-600">Explore the special places we'll visit together.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-love mb-3">#1</h3>
-                    <p class="text-gray-600">
-                        Secangkir kopi dingin ditangan udah ada,
-                        Harum semerbak menggoda rasa.
-                        Semangat gladinya ya alma,
-                        Besok aman lancar kok acaranya! ☕
-
-                    </p>
+                <div class="card bg-white rounded-xl p-6 cursor-pointer" id="rundownBtn">
+                    <div class="flex items-start">
+                        <div class="bg-rose-100 p-3 rounded-lg mr-4">
+                            <i class="far fa-calendar-alt text-rose-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="title-font text-xl text-gray-800 mb-2">Rundown</h3>
+                            <p class="text-gray-600">Detailed schedule of our romantic day.</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300">
-                    <h3 class="text-xl font-semibold text-love mb-3">#2</h3>
-                    <p class="text-gray-600">
-                        Jauh di mata dekat di hati,
-                        Rindu mengalir seperti sungai.
-                        Semoga segera kita bersua lagi,
-                        Menghapus jarak dengan peluk damai. 💕
+            </section>
 
-                    </p>
+            <!-- Destinations Section -->
+            <section id="destinationsSection" class="hidden mb-12">
+                <h2 class="title-font text-2xl text-gray-800 mb-6 flex items-center">
+                    <i class="fas fa-map-marked-alt text-rose-600 mr-2"></i> Our Destinations
+                </h2>
+                
+                <div class="mb-6">
+                    <p class="text-gray-600 mb-4">We'll visit these special places on June 8, 2025:</p>
+                    
+                    <!-- Dynamic Destinations (You can edit these) -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" id="destinationsList">
+                        <!-- Destinations will be added here -->
+                    </div>
                 </div>
-            </div>
-
-            <div class="relative overflow-hidden rounded-xl h-64">
-                <img 
-                    src="https://picsum.photos/800/400?random=1" 
-                    alt="Romantic sunset" 
-                    class="w-full h-full object-cover"
-                    loading="lazy"
-                >
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-6">
-                    <p class="text-white text-xl font-romantic">
-                        "Together is my favorite place to be"
-                    </p>
+                
+                <!-- Map Preview -->
+                <div class="bg-white rounded-xl overflow-hidden mb-4">
+                    <h3 class="title-font text-xl text-gray-800 p-4 border-b">Our Route</h3>
+                    <div class="map-container h-96 w-full" id="googleMap"></div>
+                    <div class="p-4 bg-gray-50">
+                        <button id="shareDirectionsBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition flex items-center">
+                            <i class="fab fa-whatsapp mr-2"></i> Share Directions on WhatsApp
+                        </button>
+                    </div>
                 </div>
-            </div>
+                
+                <!-- Add Destination Form -->
+                <div class="bg-white rounded-xl p-4 shadow-sm">
+                    <h3 class="title-font text-xl text-gray-800 mb-4">Plan Another Destination</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Destination Name</label>
+                            <input type="text" id="destinationName" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300">
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Location (Link or Address)</label>
+                            <input type="text" id="destinationLocation" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300">
+                        </div>
+                        <div class="flex items-end">
+                            <button id="addDestinationBtn" class="bg-rose-600 text-white py-2 px-4 rounded-lg hover:bg-rose-700 transition h-10">
+                                Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
-            <div class="bg-love text-white rounded-xl p-6 text-center">
-                <h2 class="text-2xl font-bold mb-4">Gatau diisi apa</h2>
-                <p class="mb-4">
-                    jadi lakuin aja apa yang kamu suka,
-                    karena aku suka kalau kamu suka.
-                    <br> 
-                </p>
-                <button class="bg-white text-love px-6 py-2 rounded-full font-semibold hover:bg-gray-100 transition">
-                    <i class="fas fa-heart mr-2"></i> Always Yours
-                </button>
-            </div>
+            <!-- Rundown Section -->
+            <section id="rundownSection" class="hidden">
+                <div class="bg-white rounded-xl p-4 shadow-sm mb-6">
+                    <h3 class="title-font text-xl text-gray-800 mb-4">Add Suggestion for Rundown</h3>
+                    <div class="flex flex-col md:flex-row gap-4">
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Time</label>
+                            <input type="text" id="rundownTime" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300" placeholder="Example: 14:00 - 15:00">
+                        </div>
+                        <div class="flex-1">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">Activity</label>
+                            <input type="text" id="rundownActivity" class="w-full px-4 py-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-rose-300" placeholder="Describe the activity">
+                        </div>
+                        <div class="flex items-end">
+                            <button id="addRundownSuggestionBtn" class="bg-rose-600 text-white py-2 px-4 rounded-lg hover:bg-rose-700 transition h-10">
+                                Add Suggestion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm mb-6">
+                    <div class="bg-gradient-to-r from-rose-600 to-pink-500 p-4 text-white">
+                        <h2 class="title-font text-2xl flex items-center">
+                            <i class="far fa-calendar-alt mr-2"></i> Rundown
+                        </h2>
+                        <p class="text-rose-100">June 8, 2025 · Bintaro Xchange</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <h3 class="title-font text-xl text-rose-700 mb-6">Romantic & Fun Date at Bintaro Xchange</h3>
+                        
+                        <div class="timeline relative pl-16">
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">12:30 - Pick Up Alma</h4>
+                                    </div>
+                                    <p class="text-gray-600">Arrive at Permata Oriana to pick up Alma. Make sure your appearance is perfect!</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">12:30 - 12:50 (Estimated) - Travel to Bintaro Xchange</h4>
+                                    </div>
+                                    <p class="text-gray-600">Enjoy the journey with light conversation and play your favorite playlist. Estimated arrival at Bintaro Xchange Mall around 12:50 - 13:00.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">13:00 - 14:15 - Romantic Lunch</h4>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Arrival & Parking: Find a comfortable parking spot.<br>
+                                        Choose Restaurant: Bintaro Xchange has many culinary options. You can choose according to preference:<br>
+                                        - Casual Dining: For a relaxed atmosphere (e.g., Japanese, Western, or modern Indonesian restaurant).<br>
+                                        - Slightly Fancy: If you want a more special atmosphere.<br>
+                                        Enjoy lunch while exchanging stories and jokes.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">14:15 - 14:30 - Movie Preparation</h4>
+                                    </div>
+                                    <p class="text-gray-600">After lunch, take a leisurely walk to the cinema (XXI). Buy tickets for the movie you've selected before (it's good to check the schedule and book online the day before if possible, especially since it's Sunday). Also buy popcorn and favorite drinks.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">14:30 - 17:00 (Estimated, depending on movie duration) - Movie Time!</h4>
+                                    </div>
+                                    <p class="text-gray-600">Enter the theater and enjoy your chosen movie. Quality time while watching together!</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">17:00 - 18:00 - Fun Time & Evening Walk!</h4>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Funworld/Game Arena: After the movie, it's time for fun! Invite Alma to play at Funworld or similar game arena available there. You can play basketball, car racing, or other exciting games.<br>
+                                        Window Shopping & Strolling: After playing to your heart's content, continue with a leisurely walk around the mall. Look at shops, maybe there are cute items that catch your eye or just enjoy the mall atmosphere.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">18:00 - 19:00 - Light Dining & Quality Talk</h4>
+                                    </div>
+                                    <p class="text-gray-600">
+                                        Find a Snacking/Drinking Spot: Choose a cozy cafe, ice cream/dessert stall, or trendy drink stand. This is the perfect time for deeper conversation, discussing the movie you just watched, or simply enjoying togetherness before the date ends.<br>
+                                        Enjoy light meals while relaxing.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">19:00 - Time to Go Home</h4>
+                                    </div>
+                                    <p class="text-gray-600">Take Alma back to Permata Oriana. Thank you for the wonderful day and express hope to meet again.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </main>
 
-        <footer class="mt-12 text-center text-gray-500">
-            <p>Made with <i class="fas fa-heart text-heart"></i> for someone special</p>
-            <p class="text-sm mt-2">© 2025 - Forever</p>
+        <!-- Footer -->
+        <footer class="bg-white py-6 border-t border-gray-200">
+            <div class="container mx-auto px-4 text-center text-gray-500">
+                <p>Created with <i class="fas fa-heart text-rose-400"></i> for a special someone</p>
+            </div>
         </footer>
     </div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script>
-        // Animation for hearts
+        let map;
+        let markers = [];
+        let directionsService;
+        let directionsRenderer;
+        
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("googleMap"), {
+                center: { lat: -6.2756, lng: 106.7356 }, // Bintaro area
+                zoom: 14
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+        }
+        
+        function sendToWhatsApp(content) {
+            const phoneNumber = "628994108524"; // Replace with your number
+            const encodedMessage = encodeURIComponent(content);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
-            const hearts = document.querySelectorAll('.fa-heart');
+            // Login Form Handling
+            const loginForm = document.getElementById('loginForm');
+            const loginSection = document.getElementById('loginSection');
+            const mainContent = document.getElementById('mainContent');
+            const logoutBtn = document.getElementById('logoutBtn');
             
-            hearts.forEach(heart => {
-                heart.addEventListener('mouseover', () => {
-                    heart.classList.add('animate-pulse');
+            // Destinations Elements
+            const destinationsBtn = document.getElementById('destinationsBtn');
+            const rundownBtn = document.getElementById('rundownBtn');
+            const destinationsSection = document.getElementById('destinationsSection');
+            const rundownSection = document.getElementById('rundownSection');
+            const addDestinationBtn = document.getElementById('addDestinationBtn');
+            const destinationName = document.getElementById('destinationName');
+            const destinationLocation = document.getElementById('destinationLocation');
+            const destinationsList = document.getElementById('destinationsList');
+            const mapPreview = document.getElementById('mapPreview');
+            
+            // Default destinations
+            const initialDestinations = [
+                {
+                    name: "Permata Oriana",
+                    location: "Pick up location"
+                },
+                {
+                    name: "Bintaro Xchange Mall",
+                    location: "Mal Bintaro Xchange, Jl. Bintaro Utama 3A, Pd. Pucung, Kec. Pd. Aren, Kota Tangerang Selatan, Banten 15224"
+                },
+                {
+                    name: "Funworld",
+                    location: "Funworld Game Arena in Bintaro Xchange Mall"
+                }
+            ];
+            
+            // Load destinations from localStorage or use default
+            let destinations = JSON.parse(localStorage.getItem('destinations')) || initialDestinations;
+            
+            // Render destinations
+            function renderDestinations() {
+                destinationsList.innerHTML = '';
+                destinations.forEach((destination, index) => {
+                    const destinationElement = document.createElement('div');
+                    destinationElement.className = 'card bg-white rounded-lg overflow-hidden';
+                    destinationElement.innerHTML = `
+                        <div class="pointer-events-none">
+                            <div class="p-4 pb-3">
+                                <div class="flex items-center mb-2">
+                                    <i class="fas fa-map-marker-alt text-rose-500 mr-2"></i>
+                                    <h4 class="font-medium text-gray-800">${destination.name}</h4>
+                                </div>
+                                <p class="text-gray-600 text-sm">${destination.location}</p>
+                            </div>
+                            <div class="px-4 pb-3 pt-0 flex justify-end">
+                                <button class="delete-destination text-rose-600 hover:text-rose-800 text-sm" data-index="${index}">
+                                    <i class="fas fa-trash-alt mr-1"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    destinationsList.appendChild(destinationElement);
                 });
                 
-                heart.addEventListener('mouseout', () => {
-                    heart.classList.remove('animate-pulse');
+                // Add event listeners to delete buttons
+                document.querySelectorAll('.delete-destination').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = parseInt(this.getAttribute('data-index'));
+                        deleteDestination(index);
+                    });
                 });
+                
+                renderMapSpots();
+            }
+            
+            // Render map spots
+            function renderMapSpots() {
+                // Clear existing spots (keep the first 3 for the example)
+                const existingSpots = document.querySelectorAll('.destination-spot');
+                existingSpots.forEach((spot, index) => {
+                    if (index >= 3) {
+                        spot.remove();
+                    }
+                });
+                
+                // Add new spots for additional destinations
+                destinations.forEach((destination, index) => {
+                    if (index >= 3) {
+                        const spot = document.createElement('div');
+                        spot.className = 'destination-spot';
+                        spot.setAttribute('data-destination', destination.name);
+                        
+                        // Random position for new spots
+                        const left = 10 + Math.random() * 80;
+                        const top = 10 + Math.random() * 80;
+                        spot.style.left = `${left}%`;
+                        spot.style.top = `${top}%`;
+                        
+                        mapPreview.appendChild(spot);
+                    }
+                });
+            }
+            
+            // Add new destination
+            function addDestination(name, location) {
+                if (!name.trim() || !location.trim()) {
+                    alert('Please fill in both name and location');
+                    return;
+                }
+                
+                destinations.push({
+                    name: name.trim(),
+                    location: location.trim()
+                });
+                
+                localStorage.setItem('destinations', JSON.stringify(destinations));
+                
+                // Clear input fields
+                destinationName.value = '';
+                destinationLocation.value = '';
+                
+                renderDestinations();
+            }
+            
+            // Delete destination
+            function deleteDestination(index) {
+                destinations.splice(index, 1);
+                localStorage.setItem('destinations', JSON.stringify(destinations));
+                renderDestinations();
+            }
+            
+            // Handle login form submission
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                if (username === 'alma' && password === 'urgf') {
+                    // Hide login section and show main content
+                    loginSection.classList.add('opacity-0', 'pointer-events-none');
+                    mainContent.classList.remove('hidden');
+                    
+                    // Render initial content
+                    destinationsSection.classList.remove('hidden');
+                    rundownSection.classList.add('hidden');
+                    renderDestinations();
+                } else {
+                    alert('Invalid credentials. Please try again.');
+                }
             });
+            
+            // Handle logout
+            logoutBtn.addEventListener('click', function() {
+                loginSection.classList.remove('opacity-0', 'pointer-events-none');
+                mainContent.classList.add('hidden');
+                loginForm.reset();
+            });
+            
+            // Navigation buttons
+            destinationsBtn.addEventListener('click', function() {
+                destinationsSection.classList.remove('hidden');
+                rundownSection.classList.add('hidden');
+            });
+            
+            rundownBtn.addEventListener('click', function() {
+                rundownSection.classList.remove('hidden');
+                destinationsSection.classList.add('hidden');
+            });
+            
+            // Add destination button
+            addDestinationBtn.addEventListener('click', function() {
+                const name = destinationName.value;
+                const location = destinationLocation.value;
+                addDestination(name, location);
+                
+                // Send WhatsApp notification
+                const message = `*NEW DESTINATION SUGGESTION*\n\n*Name:* ${name}\n*Location:* ${location}\n\nFrom: ${username}`;
+                sendToWhatsApp(message);
+            });
+            
+            // Add rundown suggestion button
+            addRundownSuggestionBtn.addEventListener('click', function() {
+                const time = rundownTime.value;
+                const activity = rundownActivity.value;
+                
+                if (!time || !activity) {
+                    alert('Please fill both time and activity');
+                    return;
+                }
+                
+                // Add to timeline
+                const timeline = document.querySelector('.timeline');
+                const newItem = document.createElement('div');
+                newItem.className = 'timeline-item relative pb-6';
+                newItem.innerHTML = `
+                    <div class="bg-rose-50 p-4 rounded-lg">
+                        <div class="flex justify-between items-start mb-1">
+                            <h4 class="font-medium text-gray-800">${time}</h4>
+                            <span class="text-xs text-rose-500">Suggestion</span>
+                        </div>
+                        <p class="text-gray-600">${activity}</p>
+                    </div>
+                `;
+                timeline.appendChild(newItem);
+                
+                // Send WhatsApp notification
+                const message = `*NEW RUNDOWN SUGGESTION*\n\n*Time:* ${time}\n*Activity:* ${activity}\n\nFrom: ${username}`;
+                sendToWhatsApp(message);
+                
+                // Clear inputs
+                rundownTime.value = '';
+                rundownActivity.value = '';
+            });
+            
+            // Share directions button
+            shareDirectionsBtn.addEventListener('click', function() {
+                let message = 'Our romantic itinerary:\n\n';
+                
+                // Add destinations
+                message += 'Destinations:\n';
+                destinations.forEach(dest => {
+                    message += `📍 ${dest.name}\n${dest.location}\n\n`;
+                });
+                
+                // Add timeline items
+                message += 'Schedule:\n';
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    const time = item.querySelector('h4').textContent;
+                    const activity = item.querySelector('p').textContent;
+                    message += `⏰ ${time}\n${activity}\n\n`;
+                });
+                
+                sendToWhatsApp(message);
+            });
+            
+            // Allow adding destination with Enter key
+            destinationLocation.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    addDestination(destinationName.value, destinationLocation.value);
+                }
+            });
+            
+            // Update map with destinations
+            function updateMapWithDestinations() {
+                // Clear existing markers
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+                
+                // Geocode all destinations and add markers
+                destinations.forEach(dest => {
+                    const geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ address: dest.location }, (results, status) => {
+                        if (status === 'OK' && results[0]) {
+                            const marker = new google.maps.Marker({
+                                map,
+                                position: results[0].geometry.location,
+                                title: dest.name
+                            });
+                            markers.push(marker);
+                            
+                            // Zoom map to show all markers
+                            if (markers.length > 1) {
+                                const bounds = new google.maps.LatLngBounds();
+                                markers.forEach(m => bounds.extend(m.getPosition()));
+                                map.fitBounds(bounds);
+                            } else if (markers.length === 1) {
+                                map.setCenter(markers[0].getPosition());
+                                map.setZoom(14);
+                            }
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
