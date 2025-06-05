@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Romantic Getaway Invitation</title>
+    <title>Invitation for special gf</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -103,6 +103,23 @@
                 transform: scale(3);
                 opacity: 0;
             }
+        }
+
+        .embed-map-fixed {
+            position: relative;
+            text-align: right;
+            width: 100%;
+            height: 100%;
+        }
+        .embed-map-container {
+            overflow: hidden;
+            background: none !important;
+            width: 100%;
+            height: 100%;
+        }
+        .embed-map-frame {
+            width: 100% !important;
+            height: 100% !important;
         }
         
         .timeline::before {
@@ -222,7 +239,15 @@
                     </div>
                     
                     <div id="routeMap" class="map-tab-content relative w-full h-[450px] rounded-lg overflow-hidden">
-                        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/dir/Jalan+Oriana+Permata,+Jombang,+Kota+Tangerang+Selatan,+Banten,+Indonesia/Bintaro+Jaya+Xchange+Mall,+Jalan+Lingkar+Jaya+No.24,+Pondok+Jaya,+Tangerang,+Banten,+Indonesia/data=!4m14!4m13!1m5!1m1!19sChIJO2pwjbf6aS4RU9ZMXGzyOUg!2m2!1d106.7018951!2d-6.2928605!1m5!1m1!19sChIJJYoklQvwaS4RAeAFX5yVkno!2m2!1d106.7276002!2d-6.2853788999999995!3e0"></iframe>
+                        <div class="embed-map-fixed">
+                            <div class="embed-map-container">
+                                <iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3966.31123456789!2d106.726315614769!3d-6.273456995456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x2e69f0e8f9a8f9a7%3A0x5e5e5e5e5e5e5e5e!2sPermata%20Oriana%2C%20Bintaro%2C%20Tangerang%20Selatan!3m2!1d-6.2734569999999995!2d106.7285043!4m5!1s0x2e69f0e8f9a8f9a7%3A0x5e5e5e5e5e5e5e5e!2sBintaro%20Exchange%2C%20Bintaro%20Tangerang%20Selatan!3m2!1d-6.2734569999999995!2d106.7285043!5e0!3m2!1sen!2sid!4v1630000000000"></iframe>
+                                <a href="https://map-embed.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">google maps generator</a>
+                                <a href="https://heygames.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">HeyGames</a>
+                                <a href="https://sprunkly.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Sprunki</a>
+                                <a href="https://italianbrainrotgames.org/" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Italian Brainrot Games</a>
+                            </div>
+                        </div>
                     </div>
                     
                     <div id="destinationMap" class="map-tab-content hidden relative w-full h-[450px] rounded-lg overflow-hidden">
