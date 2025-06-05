@@ -216,11 +216,17 @@
                 <!-- Map Preview -->
                 <div class="bg-white rounded-xl overflow-hidden mb-4">
                     <h3 class="title-font text-xl text-gray-800 p-4 border-b">Our Route</h3>
-                    <div id="routeVisualization" class="relative w-full h-[400px] rounded-lg overflow-hidden">
-                        <div class="embed-google-map w-full h-full">
-                            <iframe id="routeMap" width="100%" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=South Tangerang, South Tangerang City, Banten, Indonesia&t=&zoom=14&maptype=roadmap&ie=UTF8&iwloc=&output=embed"></iframe>
-                        </div>
-                        <div id="mapMarkers" class="absolute inset-0 pointer-events-none"></div>
+                    <div class="mb-4 flex border-b border-gray-200">
+                        <button class="map-tab-btn py-2 px-4 font-medium border-b-2 border-rose-600 text-rose-600" data-tab="route">Route Journey</button>
+                        <button class="map-tab-btn py-2 px-4 font-medium text-gray-500 hover:text-rose-600" data-tab="destination">Destination Details</button>
+                    </div>
+                    
+                    <div id="routeMap" class="map-tab-content relative w-full h-[450px] rounded-lg overflow-hidden">
+                        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps/dir/Jalan+Oriana+Permata,+Jombang,+Kota+Tangerang+Selatan,+Banten,+Indonesia/Bintaro+Jaya+Xchange+Mall,+Jalan+Lingkar+Jaya+No.24,+Pondok+Jaya,+Tangerang,+Banten,+Indonesia/data=!4m14!4m13!1m5!1m1!19sChIJO2pwjbf6aS4RU9ZMXGzyOUg!2m2!1d106.7018951!2d-6.2928605!1m5!1m1!19sChIJJYoklQvwaS4RAeAFX5yVkno!2m2!1d106.7276002!2d-6.2853788999999995!3e0"></iframe>
+                    </div>
+                    
+                    <div id="destinationMap" class="map-tab-content hidden relative w-full h-[450px] rounded-lg overflow-hidden">
+                        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/?cid=8832286318068621313"></iframe>
                     </div>
                     <div class="p-4 bg-gray-50">
                         <button id="shareDirectionsBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition flex items-center">
@@ -469,104 +475,28 @@
                 renderRouteVisualization();
             }
             
-            // Render route visualization
-            function renderRouteVisualization() {
-                const mapMarkers = document.getElementById('mapMarkers');
-                mapMarkers.innerHTML = '';
-                
-                // Only proceed if we have at least 2 destinations
-                if (destinations.length < 2) return;
-                
-                // Create markers for each destination
-                destinations.forEach((destination, index) => {
-                    const marker = document.createElement('div');
-                    marker.className = 'absolute transform -translate-x-1/2 -translate-y-1/2 z-10';
+            // Handle map tab switching
+            const mapTabBtns = document.querySelectorAll('.map-tab-btn');
+            const mapTabContents = document.querySelectorAll('.map-tab-content');
+            
+            mapTabBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active tab button
+                    mapTabBtns.forEach(b => {
+                        b.classList.remove('border-b-2', 'border-rose-600', 'text-rose-600');
+                        b.classList.add('text-gray-500');
+                    });
+                    this.classList.add('border-b-2', 'border-rose-600', 'text-rose-600');
+                    this.classList.remove('text-gray-500');
                     
-                    // Main marker dot
-                    const dot = document.createElement('div');
-                    dot.className = 'w-4 h-4 bg-rose-600 rounded-full shadow-md flex items-center justify-center';
-                    
-                    // Pulse animation
-                    const pulse = document.createElement('div');
-                    pulse.className = 'absolute w-8 h-8 bg-rose-200 rounded-full opacity-0 animate-ping';
-                    
-                    // Number label
-                    const number = document.createElement('div');
-                    number.className = 'text-xs font-bold text-white';
-                    number.textContent = index + 1;
-                    
-                    // Destination label
-                    const label = document.createElement('div');
-                    label.className = 'absolute -top-6 -left-5 px-2 py-1 bg-white rounded text-xs font-medium shadow whitespace-nowrap';
-                    label.textContent = destination.name;
-                    
-                    dot.appendChild(number);
-                    marker.appendChild(pulse);
-                    marker.appendChild(dot);
-                    marker.appendChild(label);
-                    
-                    // Position randomly for demo (in real app you would geocode addresses)
-                    const left = 20 + (index * 20);
-                    const top = 50 + (index % 2 ? 10 : -10);
-                    
-                    marker.style.left = `${left}%`;
-                    marker.style.top = `${top}%`;
-                    
-                    mapMarkers.appendChild(marker);
+                    // Show selected tab content
+                    const tabId = this.getAttribute('data-tab');
+                    mapTabContents.forEach(content => {
+                        content.classList.add('hidden');
+                    });
+                    document.getElementById(`${tabId}Map`).classList.remove('hidden');
                 });
-                
-                // Create path between markers
-                const path = document.createElement('div');
-                path.className = 'absolute inset-0 z-0';
-                path.innerHTML = `
-                    <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
-                        <path d="M 20,50 Q 40,40 40,50 T 80,50" 
-                              stroke="#e56b6f" 
-                              stroke-width="0.5" 
-                              fill="none"
-                              stroke-dasharray="5,5" />
-                    </svg>
-                `;
-                mapMarkers.appendChild(path);
-                
-                // Example animation (for demo - in real app you would animate based on actual route)
-                setTimeout(() => {
-                    const movingDot = document.createElement('div');
-                    movingDot.className = 'absolute w-4 h-4 bg-rose-600 rounded-full z-20 transform -translate-x-1/2 -translate-y-1/2 shadow-md';
-                    movingDot.style.left = '20%';
-                    movingDot.style.top = '50%';
-                    mapMarkers.appendChild(movingDot);
-                    
-                    // Animate between points
-                    const keyframes = [
-                        { left: '20%', top: '50%' },
-                        { left: '40%', top: '40%' },
-                        { left: '40%', top: '50%' },
-                        { left: '60%', top: '60%' },
-                        { left: '80%', top: '50%' }
-                    ];
-                    
-                    let currentKeyframe = 0;
-                    const animate = () => {
-                        if (currentKeyframe < keyframes.length - 1) {
-                            currentKeyframe++;
-                            movingDot.style.transition = 'all 2s ease-in-out';
-                            movingDot.style.left = keyframes[currentKeyframe].left;
-                            movingDot.style.top = keyframes[currentKeyframe].top;
-                            setTimeout(animate, 2000);
-                        } else {
-                            setTimeout(() => {
-                                movingDot.style.transition = 'none';
-                                movingDot.style.left = '20%';
-                                movingDot.style.top = '50%';
-                                setTimeout(animate, 500);
-                            }, 1000);
-                        }
-                    };
-                    
-                    animate();
-                }, 1000);
-            }
+            });
             
             // Animate the moving dot along the route
             function animateRoute(positions) {
