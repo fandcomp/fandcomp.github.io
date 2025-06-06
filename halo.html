@@ -202,7 +202,16 @@
                 <!-- Map Preview -->
                 <div class="bg-white rounded-xl overflow-hidden mb-4">
                     <h3 class="title-font text-xl text-gray-800 p-4 border-b">Our Route</h3>
-                    <div class="map-container h-96 w-full" id="googleMap"></div>
+                    <div class="embed-map-responsive">
+                        <div class="embed-map-container">
+                            <iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&height=400&hl=en&q=bxc&t=&z=14&ie=UTF8&iwloc=B&output=embed"></iframe>
+                            <a href="https://sprunkly.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Sprunki Games</a>
+                            <a href="https://italianbrainrotgames.org/" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Italian Brainrot Games</a>
+                            <a href="https://heygames.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">HeyGames</a>
+                            <a href="https://map-embed.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">google maps generator</a>
+                        </div>
+                        <style>.embed-map-responsive{position:relative;text-align:right;width:100%;height:0;padding-bottom:66.66666666666666%;}.embed-map-container{overflow:hidden;background:none!important;width:100%;height:100%;position:absolute;top:0;left:0;}.embed-map-frame{width:100%!important;height:100%!important;position:absolute;top:0;left:0;}</style>
+                    </div>
                     <div class="p-4 bg-gray-50">
                         <button id="shareDirectionsBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition flex items-center">
                             <i class="fab fa-whatsapp mr-2"></i> Share Directions on WhatsApp
@@ -421,22 +430,7 @@
         </footer>
     </div>
 
-    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script>
-        let map;
-        let markers = [];
-        let directionsService;
-        let directionsRenderer;
-        
-        function initMap() {
-            map = new google.maps.Map(document.getElementById("googleMap"), {
-                center: { lat: -6.2756, lng: 106.7356 }, // Bintaro area
-                zoom: 14
-            });
-            directionsService = new google.maps.DirectionsService();
-            directionsRenderer = new google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(map);
-        }
         
         function sendToWhatsApp(content) {
             const phoneNumber = "628994108524"; // Replace with your number
@@ -518,36 +512,8 @@
                     });
                 });
                 
-                renderMapSpots();
             }
             
-            // Render map spots
-            function renderMapSpots() {
-                // Clear existing spots (keep the first 3 for the example)
-                const existingSpots = document.querySelectorAll('.destination-spot');
-                existingSpots.forEach((spot, index) => {
-                    if (index >= 3) {
-                        spot.remove();
-                    }
-                });
-                
-                // Add new spots for additional destinations
-                destinations.forEach((destination, index) => {
-                    if (index >= 3) {
-                        const spot = document.createElement('div');
-                        spot.className = 'destination-spot';
-                        spot.setAttribute('data-destination', destination.name);
-                        
-                        // Random position for new spots
-                        const left = 10 + Math.random() * 80;
-                        const top = 10 + Math.random() * 80;
-                        spot.style.left = `${left}%`;
-                        spot.style.top = `${top}%`;
-                        
-                        mapPreview.appendChild(spot);
-                    }
-                });
-            }
             
             // Add new destination
             function addDestination(name, location) {
@@ -700,37 +666,6 @@
                 }
             });
             
-            // Update map with destinations
-            function updateMapWithDestinations() {
-                // Clear existing markers
-                markers.forEach(marker => marker.setMap(null));
-                markers = [];
-                
-                // Geocode all destinations and add markers
-                destinations.forEach(dest => {
-                    const geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ address: dest.location }, (results, status) => {
-                        if (status === 'OK' && results[0]) {
-                            const marker = new google.maps.Marker({
-                                map,
-                                position: results[0].geometry.location,
-                                title: dest.name
-                            });
-                            markers.push(marker);
-                            
-                            // Zoom map to show all markers
-                            if (markers.length > 1) {
-                                const bounds = new google.maps.LatLngBounds();
-                                markers.forEach(m => bounds.extend(m.getPosition()));
-                                map.fitBounds(bounds);
-                            } else if (markers.length === 1) {
-                                map.setCenter(markers[0].getPosition());
-                                map.setZoom(14);
-                            }
-                        }
-                    });
-                });
-            }
         });
     </script>
 </body>
