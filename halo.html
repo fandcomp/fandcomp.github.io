@@ -100,6 +100,12 @@
             border-radius: 50%;
             left: 30px;
         }
+        
+        .photo-portrait {
+            height: 64vw;
+            max-height: 320px;
+            aspect-ratio: 3/4;
+        }
     </style>
 </head>
 <body class="min-h-screen bg-gradient-to-b from-pink-50 to-rose-50">
@@ -148,7 +154,7 @@
             </section>
 
             <!-- Navigation Cards -->
-            <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <section class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
                 <div class="card bg-white rounded-xl p-6 cursor-pointer" id="destinationsBtn">
                     <div class="flex items-start">
                         <div class="bg-rose-100 p-3 rounded-lg mr-4">
@@ -179,6 +185,17 @@
                         <div>
                             <h3 class="title-font text-xl text-gray-800 mb-2">Dresscode</h3>
                             <p class="text-gray-600">Match our outfit colors for perfect photos.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white rounded-xl p-6 cursor-pointer" id="galleryBtn">
+                    <div class="flex items-start">
+                        <div class="bg-rose-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-tshirt text-rose-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="title-font text-xl text-gray-800 mb-2">Gallery</h3>
+                            <p class="text-gray-600">Lets see our photos.</p>
                         </div>
                     </div>
                 </div>
@@ -291,6 +308,72 @@
                                         <li>Suggested: Minimal patterns for tops</li>
                                     </ul>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Gallery Section -->
+            <section id="gallerySection" class="hidden mb-12">
+                <div class="bg-white rounded-xl overflow-hidden shadow">
+                    <div class="bg-gradient-to-r from-rose-600 to-pink-500 p-4 text-white">
+                        <h2 class="title-font text-2xl flex items-center">
+                            <i class="fas fa-photo-video mr-2"></i> Our Memories
+                        </h2>
+                        <p class="text-rose-100">Precious moments we've shared together</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            <!-- Photo 1 -->
+                            <div class="relative group overflow-hidden rounded-lg h-48 bg-gray-100">
+                                <img src="placeholder1.png" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 2 -->
+                            <div class="relative group overflow-hidden rounded-lg h-48 bg-gray-100">
+                                <img src="placeholder2.png" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 3 -->
+                            <div class="relative group overflow-hidden rounded-lg h-48 bg-gray-100">
+                                <img src="placeholder3.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 4 -->
+                            <div class="relative group overflow-hidden rounded-lg h-48 bg-gray-100">
+                                <img src="placeholder4.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 5 -->
+                            <div class="relative group overflow-hidden rounded-lg h-48 bg-gray-100">
+                                <img src="placeholder5.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 6 -->
+                            <div class="relative group overflow-hidden rounded-lg bg-gray-100 photo-portrait">
+                                <img src="placeholder6.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 7 -->
+                            <div class="relative group overflow-hidden rounded-lg bg-gray-100 photo-portrait">
+                                <img src="placeholder7.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 8 -->
+                            <div class="relative group overflow-hidden rounded-lg bg-gray-100 photo-portrait">
+                                <img src="placeholder8.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 9 -->
+                            <div class="relative group overflow-hidden rounded-lg bg-gray-100 photo-portrait">
+                                <img src="placeholder9.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
+                            </div>
+                            
+                            <!-- Photo 10 -->
+                            <div class="relative group overflow-hidden rounded-lg bg-gray-100 photo-portrait">
+                                <img src="placeholder10.jpg" alt="" class="w-full h-full object-cover transition duration-200 group-hover:scale-105">
                             </div>
                         </div>
                     </div>
@@ -574,23 +657,35 @@
             // Navigation buttons
             const dresscodeBtn = document.getElementById('dresscodeBtn');
             const dresscodeSection = document.getElementById('dresscodeSection');
+            const galleryBtn = document.getElementById('galleryBtn');
+            const gallerySection = document.getElementById('gallerySection');
             
             destinationsBtn.addEventListener('click', function() {
                 destinationsSection.classList.remove('hidden');
                 rundownSection.classList.add('hidden');
                 dresscodeSection.classList.add('hidden');
+                gallerySection.classList.add('hidden');
             });
             
             rundownBtn.addEventListener('click', function() {
                 rundownSection.classList.remove('hidden');
                 destinationsSection.classList.add('hidden');
                 dresscodeSection.classList.add('hidden');
+                gallerySection.classList.add('hidden');
             });
             
             dresscodeBtn.addEventListener('click', function() {
                 dresscodeSection.classList.remove('hidden');
                 destinationsSection.classList.add('hidden');
                 rundownSection.classList.add('hidden');
+                gallerySection.classList.add('hidden');
+            });
+            
+            galleryBtn.addEventListener('click', function() {
+                gallerySection.classList.remove('hidden');
+                destinationsSection.classList.add('hidden');
+                rundownSection.classList.add('hidden');
+                dresscodeSection.classList.add('hidden');
             });
             
             // Add destination button
