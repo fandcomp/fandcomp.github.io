@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Invitation for special gf</title>
+    <title>Romantic Getaway Invitation</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -33,51 +33,20 @@
             box-shadow: 0 15px 35px rgba(181, 91, 136, 0.2);
         }
         
-        #routeVisualization {
-            min-height: 400px;
+        .map-container {
+            height: 300px;
             position: relative;
+            overflow: hidden;
         }
         
         .destination-spot {
             position: absolute;
-            width: 16px;
-            height: 16px;
+            width: 12px;
+            height: 12px;
             background-color: #e56b6f;
             border-radius: 50%;
             transform: translate(-50%, -50%);
             z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .destination-spot::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            background-color: rgba(229, 107, 111, 0.3);
-            animation: pulse 2s infinite;
-        }
-        
-        .destination-label {
-            position: absolute;
-            top: -25px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: white;
-            padding: 2px 8px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: 500;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            white-space: nowrap;
-        }
-        
-        @keyframes moveDot {
-            0% { left: var(--start-x); top: var(--start-y); }
-            100% { left: var(--end-x); top: var(--end-y); }
         }
         
         .destination-spot::after {
@@ -93,6 +62,12 @@
             top: 0;
             left: 0;
         }
+
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(2deg); }
+            75% { transform: rotate(-2deg); }
+        }
         
         @keyframes pulse {
             0% {
@@ -103,23 +78,6 @@
                 transform: scale(3);
                 opacity: 0;
             }
-        }
-
-        .embed-map-fixed {
-            position: relative;
-            text-align: right;
-            width: 100%;
-            height: 100%;
-        }
-        .embed-map-container {
-            overflow: hidden;
-            background: none !important;
-            width: 100%;
-            height: 100%;
-        }
-        .embed-map-frame {
-            width: 100% !important;
-            height: 100% !important;
         }
         
         .timeline::before {
@@ -190,7 +148,7 @@
             </section>
 
             <!-- Navigation Cards -->
-            <section class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+            <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
                 <div class="card bg-white rounded-xl p-6 cursor-pointer" id="destinationsBtn">
                     <div class="flex items-start">
                         <div class="bg-rose-100 p-3 rounded-lg mr-4">
@@ -210,6 +168,17 @@
                         <div>
                             <h3 class="title-font text-xl text-gray-800 mb-2">Rundown</h3>
                             <p class="text-gray-600">Detailed schedule of our romantic day.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card bg-white rounded-xl p-6 cursor-pointer" id="dresscodeBtn">
+                    <div class="flex items-start">
+                        <div class="bg-rose-100 p-3 rounded-lg mr-4">
+                            <i class="fas fa-tshirt text-rose-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="title-font text-xl text-gray-800 mb-2">Dresscode</h3>
+                            <p class="text-gray-600">Match our outfit colors for perfect photos.</p>
                         </div>
                     </div>
                 </div>
@@ -233,26 +202,7 @@
                 <!-- Map Preview -->
                 <div class="bg-white rounded-xl overflow-hidden mb-4">
                     <h3 class="title-font text-xl text-gray-800 p-4 border-b">Our Route</h3>
-                    <div class="mb-4 flex border-b border-gray-200">
-                        <button class="map-tab-btn py-2 px-4 font-medium border-b-2 border-rose-600 text-rose-600" data-tab="route">Route Journey</button>
-                        <button class="map-tab-btn py-2 px-4 font-medium text-gray-500 hover:text-rose-600" data-tab="destination">Destination Details</button>
-                    </div>
-                    
-                    <div id="routeMap" class="map-tab-content relative w-full h-[450px] rounded-lg overflow-hidden">
-                        <div class="embed-map-fixed">
-                            <div class="embed-map-container">
-                                <iframe class="embed-map-frame" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3966.31123456789!2d106.726315614769!3d-6.273456995456789!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e0!4m5!1s0x2e69f0e8f9a8f9a7%3A0x5e5e5e5e5e5e5e5e!2sPermata%20Oriana%2C%20Bintaro%2C%20Tangerang%20Selatan!3m2!1d-6.2734569999999995!2d106.7285043!4m5!1s0x2e69f0e8f9a8f9a7%3A0x5e5e5e5e5e5e5e5e!2sBintaro%20Exchange%2C%20Bintaro%20Tangerang%20Selatan!3m2!1d-6.2734569999999995!2d106.7285043!5e0!3m2!1sen!2sid!4v1630000000000"></iframe>
-                                <a href="https://map-embed.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">google maps generator</a>
-                                <a href="https://heygames.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">HeyGames</a>
-                                <a href="https://sprunkly.org" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Sprunki</a>
-                                <a href="https://italianbrainrotgames.org/" style="font-size:2px!important;color:gray!important;position:absolute;bottom:0;left:0;z-index:1;max-height:10px;overflow:hidden">Italian Brainrot Games</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="destinationMap" class="map-tab-content hidden relative w-full h-[450px] rounded-lg overflow-hidden">
-                        <iframe width="100%" height="100%" style="border:0;" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/?cid=8832286318068621313"></iframe>
-                    </div>
+                    <div class="map-container h-96 w-full" id="googleMap"></div>
                     <div class="p-4 bg-gray-50">
                         <button id="shareDirectionsBtn" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded-lg transition flex items-center">
                             <i class="fab fa-whatsapp mr-2"></i> Share Directions on WhatsApp
@@ -276,6 +226,63 @@
                             <button id="addDestinationBtn" class="bg-rose-600 text-white py-2 px-4 rounded-lg hover:bg-rose-700 transition h-10">
                                 Add
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Dresscode Section -->
+            <section id="dresscodeSection" class="hidden mb-12">
+                <div class="bg-white rounded-xl overflow-hidden shadow-sm">
+                    <div class="bg-gradient-to-r from-rose-600 to-pink-500 p-4 text-white">
+                        <h2 class="title-font text-2xl flex items-center">
+                            <i class="fas fa-tshirt mr-2"></i> Our Dresscode
+                        </h2>
+                        <p class="text-rose-100">Coordinated outfits for perfect memories</p>
+                    </div>
+                    
+                    <div class="p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Couple Outfit -->
+                            <div>
+                                <h3 class="title-font text-xl text-rose-700 mb-4">Couple Outfit Guide</h3>
+                                <div class="bg-rose-50 rounded-lg p-6">
+                                    <p class="text-gray-700 mb-4">
+                                        <span class="font-semibold text-rose-600">Fandi (Him)</span> & 
+                                        <span class="font-semibold text-pink-600">Alma (Her)</span> should match:
+                                    </p>
+                                    <ul class="list-disc pl-5 text-gray-600 space-y-2">
+                                        <li><span class="font-medium">Same color tone</span> for both outfits</li>
+                                        <li><span class="font-medium">Dark top</span> for a slimming effect</li>
+                                        <li><span class="font-medium">Light bottom</span> for contrast</li>
+                                        <li>Complementary accessories</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            
+                            <!-- Animated Couple Outfits -->
+                            <div>
+                                <h3 class="title-font text-xl text-rose-700 mb-6">Our Coordinated Look</h3>
+                                <div class="flex justify-center space-x-12 items-end">
+                                    <div class="flex justify-center">
+                                        <div class="relative">
+                                            <img src="couple.jpeg" 
+                                                alt="Couple Outfit Inspiration"
+                                                class="w-full max-w-md rounded-lg shadow-lg border-4 border-white">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 bg-rose-50 rounded-lg p-6 text-center">
+                                    <h4 class="font-bold text-rose-700 mb-2">Dresscode Rules</h4>
+                                    <ul class="text-sm text-gray-700 space-y-1">
+                                        <li><span class="font-medium">Same color tone for both</span> (e.g. pink-navy, blue-mint)</li>
+                                        <li><span class="font-medium">Dark top</span> for a slimming effect</li>
+                                        <li><span class="font-medium">Light bottom</span> for contrast</li>
+                                        <li>Suggested: Minimal patterns for tops</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -327,9 +334,19 @@
                             <div class="timeline-item relative pb-6">
                                 <div class="bg-rose-50 p-4 rounded-lg">
                                     <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-medium text-gray-800">12:30 - 12:50 (Estimated) - Travel to Bintaro Xchange</h4>
+                                        <h4 class="font-medium text-gray-800">12:30 - 14:30 (Estimated) - Go to iFixied to service Fandi phone</h4>
                                     </div>
-                                    <p class="text-gray-600">Enjoy the journey with light conversation and play your favorite playlist. Estimated arrival at Bintaro Xchange Mall around 12:50 - 13:00.</p>
+                                    <p class="text-gray-600">Hehe, he said sorry for this agenda. Estimated arrival at Bintaro Xchange Mall around 14:30 - 14:45.</p>
+                                </div>
+                            </div>
+
+                            <!-- Timeline Item -->
+                            <div class="timeline-item relative pb-6">
+                                <div class="bg-rose-50 p-4 rounded-lg">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h4 class="font-medium text-gray-800">14.45 - 15:00 - Walking in BXC and going to XXI for whatching our horror movie</h4>
+                                    </div>
+                                    <p class="text-gray-600">Enjoy the place and talk some intermezzo hehe.</p>
                                 </div>
                             </div>
                             
@@ -337,14 +354,10 @@
                             <div class="timeline-item relative pb-6">
                                 <div class="bg-rose-50 p-4 rounded-lg">
                                     <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-medium text-gray-800">13:00 - 14:15 - Romantic Lunch</h4>
+                                        <h4 class="font-medium text-gray-800">15.05 - 16.40 - enjoy the movie</h4>
                                     </div>
                                     <p class="text-gray-600">
-                                        Arrival & Parking: Find a comfortable parking spot.<br>
-                                        Choose Restaurant: Bintaro Xchange has many culinary options. You can choose according to preference:<br>
-                                        - Casual Dining: For a relaxed atmosphere (e.g., Japanese, Western, or modern Indonesian restaurant).<br>
-                                        - Slightly Fancy: If you want a more special atmosphere.<br>
-                                        Enjoy lunch while exchanging stories and jokes.
+                                        Take a leisurely walk to the cinema (XXI). Are you ready to not be afraid and scream? Prepare your losing bet, Alma!<br>
                                     </p>
                                 </div>
                             </div>
@@ -353,22 +366,12 @@
                             <div class="timeline-item relative pb-6">
                                 <div class="bg-rose-50 p-4 rounded-lg">
                                     <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-medium text-gray-800">14:15 - 14:30 - Movie Preparation</h4>
+                                        <h4 class="font-medium text-gray-800">16:40 - 17:00 - Fandi want to pray in mushola</h4>
                                     </div>
-                                    <p class="text-gray-600">After lunch, take a leisurely walk to the cinema (XXI). Buy tickets for the movie you've selected before (it's good to check the schedule and book online the day before if possible, especially since it's Sunday). Also buy popcorn and favorite drinks.</p>
+                                    <p class="text-gray-600">Wait for me to finish praying, Ma!</p>
                                 </div>
                             </div>
-                            
-                            <!-- Timeline Item -->
-                            <div class="timeline-item relative pb-6">
-                                <div class="bg-rose-50 p-4 rounded-lg">
-                                    <div class="flex justify-between items-start mb-1">
-                                        <h4 class="font-medium text-gray-800">14:30 - 17:00 (Estimated, depending on movie duration) - Movie Time!</h4>
-                                    </div>
-                                    <p class="text-gray-600">Enter the theater and enjoy your chosen movie. Quality time while watching together!</p>
-                                </div>
-                            </div>
-                            
+                                                    
                             <!-- Timeline Item -->
                             <div class="timeline-item relative pb-6">
                                 <div class="bg-rose-50 p-4 rounded-lg">
@@ -418,7 +421,22 @@
         </footer>
     </div>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
     <script>
+        let map;
+        let markers = [];
+        let directionsService;
+        let directionsRenderer;
+        
+        function initMap() {
+            map = new google.maps.Map(document.getElementById("googleMap"), {
+                center: { lat: -6.2756, lng: 106.7356 }, // Bintaro area
+                zoom: 14
+            });
+            directionsService = new google.maps.DirectionsService();
+            directionsRenderer = new google.maps.DirectionsRenderer();
+            directionsRenderer.setMap(map);
+        }
         
         function sendToWhatsApp(content) {
             const phoneNumber = "628994108524"; // Replace with your number
@@ -449,6 +467,10 @@
                 {
                     name: "Permata Oriana",
                     location: "Pick up location"
+                },
+                {
+                    name: "iFixied Service Center",
+                    location: "Service center for Fandi's phone"
                 },
                 {
                     name: "Bintaro Xchange Mall",
@@ -496,72 +518,35 @@
                     });
                 });
                 
-                renderDestinations();
-                renderRouteVisualization();
+                renderMapSpots();
             }
             
-            // Handle map tab switching
-            const mapTabBtns = document.querySelectorAll('.map-tab-btn');
-            const mapTabContents = document.querySelectorAll('.map-tab-content');
-            
-            mapTabBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    // Update active tab button
-                    mapTabBtns.forEach(b => {
-                        b.classList.remove('border-b-2', 'border-rose-600', 'text-rose-600');
-                        b.classList.add('text-gray-500');
-                    });
-                    this.classList.add('border-b-2', 'border-rose-600', 'text-rose-600');
-                    this.classList.remove('text-gray-500');
-                    
-                    // Show selected tab content
-                    const tabId = this.getAttribute('data-tab');
-                    mapTabContents.forEach(content => {
-                        content.classList.add('hidden');
-                    });
-                    document.getElementById(`${tabId}Map`).classList.remove('hidden');
-                });
-            });
-            
-            // Animate the moving dot along the route
-            function animateRoute(positions) {
-                const movingDot = document.getElementById('movingDot');
-                movingDot.style.display = 'block';
-                
-                // Start at first position
-                movingDot.style.setProperty('--start-x', `${positions[0].left}%`);
-                movingDot.style.setProperty('--start-y', `${positions[0].top}%`);
-                
-                // Animate through each point
-                let delay = 0;
-                positions.forEach((pos, index) => {
-                    if (index === 0) return;
-                    
-                    setTimeout(() => {
-                        movingDot.style.setProperty('--start-x', `${positions[index-1].left}%`);
-                        movingDot.style.setProperty('--start-y', `${positions[index-1].top}%`);
-                        movingDot.style.setProperty('--end-x', `${pos.left}%`);
-                        movingDot.style.setProperty('--end-y', `${pos.top}%`);
-                        movingDot.style.animation = 'moveDot 2s linear forwards';
-                    }, delay);
-                    
-                    delay += 2000;
+            // Render map spots
+            function renderMapSpots() {
+                // Clear existing spots (keep the first 3 for the example)
+                const existingSpots = document.querySelectorAll('.destination-spot');
+                existingSpots.forEach((spot, index) => {
+                    if (index >= 3) {
+                        spot.remove();
+                    }
                 });
                 
-                // Return to start (final animation)
-                setTimeout(() => {
-                    movingDot.style.setProperty('--start-x', `${positions[positions.length-1].left}%`);
-                    movingDot.style.setProperty('--start-y', `${positions[positions.length-1].top}%`);
-                    movingDot.style.setProperty('--end-x', `${positions[0].left}%`);
-                    movingDot.style.setProperty('--end-y', `${positions[0].top}%`);
-                    movingDot.style.animation = 'moveDot 2s linear forwards';
-                }, delay);
-                
-                // Reset animation to loop
-                setTimeout(() => {
-                    movingDot.style.animation = 'none';
-                    setTimeout(() => animateRoute(positions), 1000);
-                }, delay + 2000);
+                // Add new spots for additional destinations
+                destinations.forEach((destination, index) => {
+                    if (index >= 3) {
+                        const spot = document.createElement('div');
+                        spot.className = 'destination-spot';
+                        spot.setAttribute('data-destination', destination.name);
+                        
+                        // Random position for new spots
+                        const left = 10 + Math.random() * 80;
+                        const top = 10 + Math.random() * 80;
+                        spot.style.left = `${left}%`;
+                        spot.style.top = `${top}%`;
+                        
+                        mapPreview.appendChild(spot);
+                    }
+                });
             }
             
             // Add new destination
@@ -621,14 +606,25 @@
             });
             
             // Navigation buttons
+            const dresscodeBtn = document.getElementById('dresscodeBtn');
+            const dresscodeSection = document.getElementById('dresscodeSection');
+            
             destinationsBtn.addEventListener('click', function() {
                 destinationsSection.classList.remove('hidden');
                 rundownSection.classList.add('hidden');
+                dresscodeSection.classList.add('hidden');
             });
             
             rundownBtn.addEventListener('click', function() {
                 rundownSection.classList.remove('hidden');
                 destinationsSection.classList.add('hidden');
+                dresscodeSection.classList.add('hidden');
+            });
+            
+            dresscodeBtn.addEventListener('click', function() {
+                dresscodeSection.classList.remove('hidden');
+                destinationsSection.classList.add('hidden');
+                rundownSection.classList.add('hidden');
             });
             
             // Add destination button
@@ -704,6 +700,37 @@
                 }
             });
             
+            // Update map with destinations
+            function updateMapWithDestinations() {
+                // Clear existing markers
+                markers.forEach(marker => marker.setMap(null));
+                markers = [];
+                
+                // Geocode all destinations and add markers
+                destinations.forEach(dest => {
+                    const geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ address: dest.location }, (results, status) => {
+                        if (status === 'OK' && results[0]) {
+                            const marker = new google.maps.Marker({
+                                map,
+                                position: results[0].geometry.location,
+                                title: dest.name
+                            });
+                            markers.push(marker);
+                            
+                            // Zoom map to show all markers
+                            if (markers.length > 1) {
+                                const bounds = new google.maps.LatLngBounds();
+                                markers.forEach(m => bounds.extend(m.getPosition()));
+                                map.fitBounds(bounds);
+                            } else if (markers.length === 1) {
+                                map.setCenter(markers[0].getPosition());
+                                map.setZoom(14);
+                            }
+                        }
+                    });
+                });
+            }
         });
     </script>
 </body>
